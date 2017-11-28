@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image/ico" href="./assets/favicon.ico" />
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <link href="./css/main.css" rel="stylesheet">
+    <title>DoggoGram</title>
+</head>
+
+<body>
+    <nav id="nav-wrapper">
+        <img id="nav-img" src="./assets/logo.png" alt="doggo-logo" />
+        <h1 id="nav-title">Doggo Gram</h1>
+    </nav>
+
+    <div class="container">
+        <section class="input">
+            <!-- Form just calls a js function -->
+            <form onsubmit="handleFormSubmit(); return false;">
+                <input type="text" name="username" id="input-username" placeholder="Enter a username!" required>
+                <input type="text" name="comment" id="input-caption" placeholder="Enter a clever caption!" required>
+                <select id="input-picture">
+                    <option value="woofer">Woofer</option>
+                    <option value="pupper">Pupper</option>
+                    <option value="clouds">Fluffy Clouds</option>
+                    <option value="snek">Snek</option>
+                </select>
+                <button>Submit Post!</button>
+            </form>
+        </section>
+
+        <section id="post-list">
+        </section>
+    </div>
+
+    <footer>
+        Made with &hearts; by 146 CAs
+    </footer>
+    <!-- Your JS to implement -->
+    <script type="text/javascript" src="./js/dont-touch-me.js"></script>
+</body>
+
+</html>
