@@ -35,18 +35,18 @@ const evaluateData = async page => {
 		});
 	});
 	if (children.length === 4) {
-		console.log(chalk.green('Child Nodes Added Successfully (+20 Points)'));
-		points += 20;
+		console.log(chalk.green('Child Nodes Added Successfully (+10 Points)'));
+		points += 10;
 	}
 	for (i in children) {
 		if ((children[i].className = 'post')) {
 			console.log(
-				chalk.green(`Child ${i} Correct ClassName (+4 Points)`)
+				chalk.green(`Child ${i} Correct ClassName (+3 Points)`)
 			);
-			points += 4;
+			points += 3;
 		} else {
 			console.log(
-				chalk.red(`Child ${i} Incorrect ClassName (-4 Points)`)
+				chalk.red(`Child ${i} Incorrect ClassName (-3 Points)`)
 			);
 		}
 		if ((children[i].user = dummyData[i][0])) {
@@ -60,6 +60,12 @@ const evaluateData = async page => {
 			points += 3;
 		} else {
 			console.log(chalk.red(`Child ${i} Incorrect Caption (-3 Points)`));
+		}
+		if (children[i].img.indexOf(dummyData[i][2]) !== -1) {
+			console.log(chalk.green(`Child ${i} Correct Image (+3 Points)`));
+			points += 3;
+		} else {
+			console.log(chalk.red(`Child ${i} Incorrect Image (-3 Points)`));
 		}
 	}
 	return points;
@@ -77,22 +83,22 @@ const testHover = async page => {
 		};
 	});
 	if (hoverStats.opacity === '1') {
-		console.log(chalk.green(`Correct Hover Opacity (+5 Points)`));
-		points += 5;
+		console.log(chalk.green(`Correct Hover Opacity (+7 Points)`));
+		points += 7;
 	} else {
-		console.log(chalk.red(`Incorrect Hover Opacity (-5 Points)`));
+		console.log(chalk.red(`Incorrect Hover Opacity (-7 Points)`));
 	}
 	if (hoverStats.transitionDuration === '0.5s') {
-		console.log(chalk.green(`Correct Hover Transition (+5 Points)`));
-		points += 5;
+		console.log(chalk.green(`Correct Hover Transition (+7 Points)`));
+		points += 7;
 	} else {
-		console.log(chalk.red(`Incorrect Hover Transition (-5 Points)`));
+		console.log(chalk.red(`Incorrect Hover Transition (-7 Points)`));
 	}
 	if (hoverStats.transitionProperty === 'opacity') {
-		console.log(chalk.green(`Correct Transition Property (+5 Points)`));
-		points += 5;
+		console.log(chalk.green(`Correct Transition Property (+7 Points)`));
+		points += 7;
 	} else {
-		console.log(chalk.red(`Incorrect Transition Property (-5 Points)`));
+		console.log(chalk.red(`Incorrect Transition Property (-7 Points)`));
 	}
 	return points;
 };

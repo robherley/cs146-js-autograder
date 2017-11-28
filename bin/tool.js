@@ -5,8 +5,11 @@ const fse = require('fs-extra');
 const path = require('path');
 const { insertData, evaluateData, testHover } = require('../src/tests');
 const serve = require('serve');
+const server = serve(path.join(__dirname, '../src/static/'), {
+	port: 1337
+});
 
-let totalPoints = 15; // Lets start at 15 to be nice
+let totalPoints = 20;
 
 (async () => {
 	if (process.argv.length !== 3) {
@@ -23,30 +26,36 @@ let totalPoints = 15; // Lets start at 15 to be nice
 	console.log(
 		chalk.yellow('Launching Test Environment... (Press Ctrl+C to Exit)')
 	);
-	const server = serve(path.join(__dirname, '../src/static/'), {
-		port: 1337
-	});
 	const browser = await puppeteer.launch({ headless: false });
 	const page = await browser.newPage();
+	page.on('pageerror', err => {
+		console.log(chalk.red('Page Error:', err));
+		if (totalPoints !== 0) {
+			console.log(chalk.red('(-4 Points)'));
+			totalPoints -= 4;
+		}
+	});
 	await page.goto(`localhost:1337/index.html`);
+	console.log(chalk.green('Page Loaded!'));
 	await page.addScriptTag({
 		path: JS_FILE
 	});
-	console.log(chalk.green('Page Loaded Successfully! (+10 Points)'));
-	totalPoints += 10;
 	await insertData(page);
 	totalPoints += await evaluateData(page);
 	totalPoints += await testHover(page);
+	totalPoints += 1; // Gotta make it a nice number
 	console.log(chalk.magenta('Final Grade:'), totalPoints);
 	console.log(chalk.yellow('Press any key to exit...'));
 	process.stdin.setRawMode(true);
 	process.stdin.resume();
 	process.stdin.on('data', async () => {
 		await browser.close();
+		server.stop();
 		process.exit(0);
 	});
 })().catch(err => {
 	console.error(chalk.red(`Crashed: Total Points so far: ${totalPoints}`));
 	console.error(err);
+	server.stop();
 	process.exit(1);
 });
