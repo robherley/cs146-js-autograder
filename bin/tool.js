@@ -11,7 +11,6 @@ let totalPoints = 15; // Lets start at 15 to be nice
 (async () => {
 	if (process.argv.length !== 3) {
 		console.log(chalk.yellow('Usage: js-grader <assignment.js>'));
-		console.log(process.argv.length, process.argv);
 		process.exit(1);
 	}
 	const JS_FILE = `${process.cwd()}/${process.argv[2]}`;
