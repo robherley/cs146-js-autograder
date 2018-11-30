@@ -1,16 +1,17 @@
 {
-	"name": "js-grader",
-	"version": "1.0.0",
-	"description": "Auto-grader for the CS146 JS assignment",
-	"bin": {
-		"js-grader": "bin/tool.js"
-	},
-	"author": "rob herley",
-	"license": "ISC",
-	"dependencies": {
-		"chalk": "^2.3.0",
-		"fs-extra": "^4.0.2",
-		"puppeteer": "^0.13.0",
-		"serve": "^6.4.1"
-	}
+   "name": "js-grader",
+   "version": "1.0.0",
+   "description": "Auto-grader for the CS146 hw4 assignment",
+   "bin": {
+      "js-grader": "bin/tool.js"
+   },
+   "author": "rob herley",
+   "license": "ISC",
+   "dependencies": {
+      "chalk": "^2.4.1",
+      "fs-extra": "^7.0.1",
+      "ora": "^3.0.0",
+      "puppeteer": "^1.11.0",
+      "serve-handler": "^5.0.7"
+   }
 }
